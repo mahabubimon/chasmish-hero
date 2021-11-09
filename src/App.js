@@ -1,8 +1,13 @@
+import Layout from "./components/layout/Layout";
+import AuthProvider from "./context/AuthProvider";
+
 function App() {
   return (
-    <div className="App">
-      <h1>Hello Chasmish</h1>
-    </div>
+    <AuthProvider>
+      <Layout>
+        
+      </Layout>
+    </AuthProvider>
   );
 }
 
