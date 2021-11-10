@@ -1,11 +1,18 @@
-import React from 'react';
+import React from "react";
+import Glasses from "../../glasses/Glasses";
+import Banner from "../banner/Banner";
+import Humanity from "../humanity/Humanity";
+import Reviews from "../reviews/Reviews";
 
 const Home = () => {
-    return (
-        <div>
-            <h1>This is Home</h1>
-        </div>
-    );
+  return (
+    <main>
+      <Banner></Banner>
+      <Glasses></Glasses>
+      <Reviews></Reviews>
+      <Humanity></Humanity>
+    </main>
+  );
 };
 
 export default Home;
