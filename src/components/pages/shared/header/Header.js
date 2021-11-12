@@ -2,6 +2,7 @@ import React from "react";
 import { Button, Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { HashLink as Link } from "react-router-hash-link";
 import useAuth from "../../../../hooks/useAuth";
+import "./header.css";
 
 const Header = () => {
   const { firebaseData } = useAuth();
@@ -11,6 +12,7 @@ const Header = () => {
     { name: "Home", to: "/home" },
     { name: "Glasses", to: "/glasses" },
     { name: "Reviews", to: "/home#reviews" },
+    { name: "Brands", to: "/home#brands" },
     { name: "Humanity", to: "/home#humanity" },
   ];
   return (
@@ -32,7 +34,7 @@ const Header = () => {
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
-            <Nav className="ms-auto">
+            <Nav className="ms-auto pe-0">
               {navigation.map((item) => (
                 <Nav.Link
                   as={Link}
@@ -48,11 +50,21 @@ const Header = () => {
                   <Nav.Link
                     as={Link}
                     to="/dashboard"
-                    className="text-warning fs-5"
+                    className="text-danger fs-5"
                   >
                     Dashboard
                   </Nav.Link>
-                  <NavDropdown id="collasible-nav-dropdown">
+                  <NavDropdown
+                    title={
+                      <img
+                        src={
+                          user.photoURL || "https://i.ibb.co/LkRh377/user.jpg"
+                        }
+                        className="user-image"
+                        alt="user pic"
+                      />
+                    }
+                  >
                     <NavDropdown.Item href="#action/3.1">
                       {user.displayName}
                     </NavDropdown.Item>
@@ -62,13 +74,6 @@ const Header = () => {
                       </Button>
                     </NavDropdown.Item>
                   </NavDropdown>
-                  <Nav.Link className="p-0">
-                    <img
-                      src={user.photoURL || "https://i.ibb.co/LkRh377/user.jpg"}
-                      alt=""
-                      className="user-image"
-                    />
-                  </Nav.Link>
                 </>
               ) : (
                 <Nav.Link

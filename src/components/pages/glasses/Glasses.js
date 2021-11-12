@@ -1,28 +1,20 @@
-// import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
+import { CardGroup, Container } from "react-bootstrap";
+import useAuth from "../../../hooks/useAuth";
+import SingleGlass from "./SingleGlass";
 
 const Glasses = () => {
-  const [glasses, setGlasses] = useState([]);
-  useEffect(() => {
-    fetch("glasses.json")
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        setGlasses(data);
-      })
-      .catch((error) => {
-        // handle error
-        console.log(error);
-      });
-  }, []);
+  const { glasses } = useAuth().glassesData;
   return (
     <section>
-      <h1>This is Glasses section</h1>
-      <ol>
-        {glasses.map((glass) => (
-          <li key={glass.title}>{glass.title}</li>
-        ))}
-      </ol>
+      <Container className="text-center py-5">
+        <h2>Chose Your Favorite  Glass</h2>
+        <CardGroup className="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          {glasses.map((glass) => (
+            <SingleGlass key={glass._id} glass={glass}></SingleGlass>
+          ))}
+        </CardGroup>
+      </Container>
     </section>
   );
 };

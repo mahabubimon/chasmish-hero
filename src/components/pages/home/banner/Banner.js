@@ -25,7 +25,7 @@ const Banner = () => {
     },
   ];
   return (
-    <section>
+    <section className="pb-5">
       <Carousel variant="dark">
         {bannerContents.map((banner) => (
           <Carousel.Item interval={1000} key={banner.name}>

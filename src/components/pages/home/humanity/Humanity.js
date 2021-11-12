@@ -3,11 +3,11 @@ import { Col, Container, Row } from "react-bootstrap";
 
 const Humanity = () => {
   return (
-    <section id="humanity">
+    <section id="humanity" className="py-5">
       <Container className="text-center">
-        <h3>BUSINESS FOR HUMAN</h3>
+        <h3 className="text-info">BUSINESS FOR HUMAN</h3>
         <h5>BUY ONE l GIVE ONE</h5>
-        <Row className="row-cols-1 row-cols-md-2">
+        <Row className="row-cols-1 row-cols-md-2 g-4">
           <Col>
             <img
               className="img-fluid"
