@@ -9,12 +9,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-body::before {
-  display: block;
-  content: "";
-  height: 70px;
-  background-color: #dff9fb;
-}
 .dropdown-toggle::after {
   content: none;
 }

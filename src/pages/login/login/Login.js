@@ -19,6 +19,8 @@ const Login = () => {
     setNewUser,
     signIn,
     googleSignIn,
+    saveUser,
+    updateUser,
   } = firebaseData;
 
   const history = useHistory();
@@ -65,7 +67,9 @@ const Login = () => {
   const handleSignInUser = (e) => {
     signIn(email, password)
       .then((result) => {
-        setUser(result.user);
+        const user = result.user;
+        setUser(user);
+        saveUser(user.email, user.displayName);
         history.push(redirect_uri);
       })
       .catch((error) => {
@@ -86,7 +90,9 @@ const Login = () => {
   const handleSignIn = (provider) => {
     provider()
       .then((result) => {
-        setUser(result.user);
+        const user = result.user;
+        setUser(user);
+        updateUser(user.email, user.displayName);
         history.push(redirect_uri);
       })
       .finally(() => setIsLoading(false));

@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import { ImBin } from "react-icons/im";
-import useAuth from "../../../../hooks/useAuth";
+import useAuth from "../../../hooks/useAuth";
 
 const MyOrders = () => {
   const [myOrders, setMyOrders] = useState([]);
@@ -47,7 +47,7 @@ const MyOrders = () => {
       <Table responsive>
         <thead>
           <tr>
-            <th>Package Name</th>
+            <th>Ordered Glasses</th>
             <th>Total Cost</th>
             <th>Status</th>
             <th>Delete</th>

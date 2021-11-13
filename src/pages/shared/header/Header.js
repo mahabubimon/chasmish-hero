@@ -1,12 +1,14 @@
 import React from "react";
 import { Button, Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { useHistory } from "react-router";
 import { HashLink as Link } from "react-router-hash-link";
-import useAuth from "../../../../hooks/useAuth";
+import useAuth from "../../../hooks/useAuth";
 import "./header.css";
 
 const Header = () => {
   const { firebaseData } = useAuth();
   const { handleLogout, user } = firebaseData;
+  const history = useHistory();
 
   const navigation = [
     { name: "Home", to: "/home" },
@@ -69,7 +71,7 @@ const Header = () => {
                       {user.displayName}
                     </NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">
-                      <Button variant="danger" onClick={handleLogout}>
+                      <Button variant="danger" onClick={()=>handleLogout(history)}>
                         Logout
                       </Button>
                     </NavDropdown.Item>

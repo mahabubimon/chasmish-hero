@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   createUserWithEmailAndPassword,
   getAuth,
@@ -49,18 +50,31 @@ const useFirebase = () => {
     return () => unsubscribed;
   }, [auth]);
 
-  const handleLogout = () => {
+  const handleLogout = (history) => {
     signOut(auth)
       .then(() => {
         setUser("");
+        history.push("/");
       })
       .finally(() => setIsLoading(false));
+  };
+
+  const saveUser = (email, displayName) => {
+    const user = { email, displayName };
+    const url = "http://localhost:5000/users";
+    axios.post(url, user).then().catch();
+  };
+  const updateUser = (email, displayName) => {
+    const user = { email, displayName };
+    const url = "http://localhost:5000/users";
+    axios.put(url, user).then().catch();
   };
 
   return {
     user,
     setUser,
     error,
+    saveUser,updateUser,
     setError,
     isLoading,
     setIsLoading,
