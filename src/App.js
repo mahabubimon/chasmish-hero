@@ -6,6 +6,7 @@ import Glasses from "./pages/glasses/Glasses";
 import Home from "./pages/home/home/Home";
 import Login from "./pages/login/login/Login";
 import PrivateRoute from "./pages/login/privateRoute/PrivateRoute";
+import NotFound from "./pages/notfound/NotFound";
 
 function App() {
   return (
@@ -24,11 +25,14 @@ function App() {
           <PrivateRoute path="/glass/:id">
             <BuyNow></BuyNow>
           </PrivateRoute>
-          <Route path="/dashboard">
+          <PrivateRoute path="/dashboard">
             <Dashboard></Dashboard>
-          </Route>
+          </PrivateRoute>
           <Route path="/login">
             <Login></Login>
+          </Route>
+          <Route path="*">
+            <NotFound />
           </Route>
         </Switch>
       </Router>

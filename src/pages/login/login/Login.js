@@ -25,7 +25,7 @@ const Login = () => {
 
   const history = useHistory();
   const location = useLocation();
-  const redirect_uri = location.state?.from || "/dashboard";
+  const redirect_uri = location.state?.from || "/";
 
   const handleUserName = (e) => {
     setUserName(e.target.value);
@@ -42,11 +42,10 @@ const Login = () => {
   };
 
   const registerUser = (e) => {
+    setIsLoading(true);
     e.preventDefault();
     registerNewUser(email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        console.log(user);
+      .then((data) => {
         updateUserName();
         handleSignInUser(e);
       })
@@ -57,14 +56,17 @@ const Login = () => {
   };
 
   const updateUserName = () => {
+    setIsLoading(true);
     setNewUser(userName)
       .then(() => {})
       .catch((error) => {
         setError(error.message);
-      });
+      })
+      .finally(() => setIsLoading(false));
   };
 
   const handleSignInUser = (e) => {
+    setIsLoading(true);
     signIn(email, password)
       .then((result) => {
         const user = result.user;
@@ -88,6 +90,7 @@ const Login = () => {
   };
 
   const handleSignIn = (provider) => {
+    setIsLoading(true);
     provider()
       .then((result) => {
         const user = result.user;

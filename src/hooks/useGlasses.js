@@ -5,7 +5,7 @@ const useGlasses = () => {
   const [glasses, setGlasses] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/glasses")
+      .get("https://chasmish-hero.herokuapp.com/glasses")
       .then((glasses) => {
         setGlasses(glasses.data);
       })

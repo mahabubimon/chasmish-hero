@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { Button, Table } from "react-bootstrap";
 import { ImBin } from "react-icons/im";
-import useAuth from "../../../hooks/useAuth";
+import useAuth from "../../../../hooks/useAuth";
 
 const MyOrders = () => {
   const [myOrders, setMyOrders] = useState([]);
@@ -11,11 +11,11 @@ const MyOrders = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/orders")
+      .get("https://chasmish-hero.herokuapp.com/orders")
       .then((res) => {
-          const allOrders = res.data;
+        const allOrders = res.data;
 
-        const order = allOrders.filter(order => order.email === user.email);
+        const order = allOrders.filter((order) => order.email === user.email);
         setMyOrders(order);
       })
       .catch((err) => console.log(err));
@@ -24,16 +24,16 @@ const MyOrders = () => {
   const deleteOrder = (id) => {
     const proceed = window.confirm("Are you want to delete?");
     if (proceed) {
-      const url = `http://localhost:5000/orders/${id}`;
+      const url = `https://chasmish-hero.herokuapp.com/orders/${id}`;
       axios
         .delete(url)
         .then((res) => {
           console.log(res);
           if (res.data.deletedCount > 0) {
-          const remainingMyOrders = myOrders.filter(
-            (order) => order._id !== id
-          );
-          setMyOrders(remainingMyOrders);
+            const remainingMyOrders = myOrders.filter(
+              (order) => order._id !== id
+            );
+            setMyOrders(remainingMyOrders);
           }
         })
         .catch((error) => {
@@ -43,7 +43,8 @@ const MyOrders = () => {
   };
 
   return (
-    <div>
+    <section>
+      <h2 className="text-info pb-5 text-center">Your Added Orders...</h2>
       <Table responsive>
         <thead>
           <tr>
@@ -68,7 +69,7 @@ const MyOrders = () => {
           ))}
         </tbody>
       </Table>
-    </div>
+    </section>
   );
 };
 

@@ -1,6 +1,6 @@
 import axios from "axios";
 import React from "react";
-import { Button } from "react-bootstrap";
+import { Button, Spinner } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router";
 import useAuth from "../../hooks/useAuth";
@@ -13,12 +13,20 @@ const BuyNow = () => {
   const { user } = useAuth().firebaseData;
   const { glasses } = useAuth().glassesData;
 
+  if (glasses.length === 0) {
+    return (
+      <div className="text-center mt-5 p-5">
+        <Spinner animation="border" variant="primary" />
+      </div>
+    );
+  }
+
   const glass = glasses.find((glass) => glass._id === id);
 
   const { title, image, details, price } = glass;
 
   const onSubmit = (data) => {
-    const url = "http://localhost:5000/orders";
+    const url = "https://chasmish-hero.herokuapp.com/orders";
     axios
       .post(url, data)
       .then((res) => {
@@ -29,6 +37,7 @@ const BuyNow = () => {
       })
       .catch((err) => console.log(err));
   };
+
   return (
     <>
       <Header />

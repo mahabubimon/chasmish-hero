@@ -1,5 +1,6 @@
 import React from "react";
 import { Carousel } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const Banner = () => {
   const bannerContents = [
@@ -30,8 +31,15 @@ const Banner = () => {
         {bannerContents.map((banner) => (
           <Carousel.Item interval={1000} key={banner.name}>
             <img className="d-block w-100" src={banner.img} alt={banner.name} />
+
             <Carousel.Caption>
-              <h5>{banner.caption}</h5>
+              <div className="text-center pb-lg-5">
+                <Link to="/glasses">
+                  <button className="btn btn-danger mb-5">
+                    Explore All Glasses
+                  </button>
+                </Link>
+              </div>
             </Carousel.Caption>
           </Carousel.Item>
         ))}

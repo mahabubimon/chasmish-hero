@@ -5,9 +5,8 @@ import useAuth from "../../../hooks/useAuth";
 
 const PrivateRoute = ({ children, ...rest }) => {
   const { firebaseData } = useAuth();
-  const { user, isLoading } = firebaseData;
-
-  if (isLoading) {
+  const { user } = firebaseData;
+  if (!user) {
     return (
       <div className="text-center p-5">
         <Spinner animation="border" variant="primary" />
@@ -19,7 +18,7 @@ const PrivateRoute = ({ children, ...rest }) => {
     <Route
       {...rest}
       render={({ location }) =>
-        user.displayName ? (
+        user.email ? (
           children
         ) : (
           <Redirect

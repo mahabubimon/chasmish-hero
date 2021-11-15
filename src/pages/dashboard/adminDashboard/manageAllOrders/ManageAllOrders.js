@@ -3,11 +3,11 @@ import React, { useEffect, useState } from "react";
 import { Button, Dropdown, Table } from "react-bootstrap";
 import { ImBin } from "react-icons/im";
 
-const ManageOrders = () => {
+const ManageAllOrders = () => {
   const [allOrders, setAllOrders] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/orders")
+      .get("https://chasmish-hero.herokuapp.com/orders")
       .then((res) => {
         setAllOrders(res.data);
       })
@@ -17,7 +17,7 @@ const ManageOrders = () => {
   const deleteOrder = (id) => {
     const proceed = window.confirm("Are you want to delete?");
     if (proceed) {
-      const url = `http://localhost:5000/orders/${id}`;
+      const url = `https://chasmish-hero.herokuapp.com/orders/${id}`;
       axios
         .delete(url)
         .then((res) => {
@@ -79,4 +79,4 @@ const ManageOrders = () => {
   );
 };
 
-export default ManageOrders;
+export default ManageAllOrders;

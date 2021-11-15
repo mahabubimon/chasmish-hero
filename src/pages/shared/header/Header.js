@@ -71,7 +71,10 @@ const Header = () => {
                       {user.displayName}
                     </NavDropdown.Item>
                     <NavDropdown.Item href="#action/3.2">
-                      <Button variant="danger" onClick={()=>handleLogout(history)}>
+                      <Button
+                        variant="danger"
+                        onClick={() => handleLogout(history)}
+                      >
                         Logout
                       </Button>
                     </NavDropdown.Item>

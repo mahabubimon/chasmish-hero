@@ -5,9 +5,9 @@ const Humanity = () => {
   return (
     <section id="humanity" className="py-5">
       <Container className="text-center">
-        <h3 className="text-info">BUSINESS FOR HUMAN</h3>
+        <h2 className="text-info">BUSINESS FOR HUMAN</h2>
         <h5>BUY ONE l GIVE ONE</h5>
-        <Row className="row-cols-1 row-cols-md-2 g-4">
+        <Row className="row-cols-1 row-cols-md-2 pt-5 g-4">
           <Col>
             <img
               className="img-fluid"

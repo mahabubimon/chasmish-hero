@@ -1,5 +1,5 @@
 import React from "react";
-import { CardGroup, Container } from "react-bootstrap";
+import { CardGroup, Container, Spinner } from "react-bootstrap";
 import useAuth from "../../../hooks/useAuth";
 import SingleGlass from "../../glasses/SingleGlass";
 import Footer from "../../shared/footer/Footer";
@@ -13,13 +13,10 @@ const Home = () => {
   const { glassesData } = useAuth();
   const { glasses } = glassesData;
 
-  if (glasses) {
+  if (glasses.length === 0) {
     return (
-      <div className="text-center p-5">
-        <h1>
-          Due to job pressure, I couldn't complete the Assignment. <br /> Please
-          Consider My Issue. <br /> Kindly Check this Assignment after 15.11.2021.
-        </h1>
+      <div className="text-center mt-5 p-5">
+        <Spinner animation="border" variant="primary" />
       </div>
     );
   }
@@ -31,7 +28,7 @@ const Home = () => {
         <Banner />
         <section>
           <Container className="text-center py-5">
-            <h2>Chose Your Favorite Glass.</h2>
+            <h2 className="text-info">Chose Your Favorite Glass.</h2>
             <CardGroup className="row row-cols-1 row-cols-md-2 g-4">
               {glasses.slice(0, 6).map((glass) => (
                 <SingleGlass key={glass._id} glass={glass}></SingleGlass>

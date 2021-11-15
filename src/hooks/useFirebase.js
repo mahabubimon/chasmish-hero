@@ -16,6 +16,7 @@ initializeAuthentication();
 
 const useFirebase = () => {
   const [user, setUser] = useState("");
+  const [admin, setAdmin] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -61,20 +62,31 @@ const useFirebase = () => {
 
   const saveUser = (email, displayName) => {
     const user = { email, displayName };
-    const url = "http://localhost:5000/users";
+    const url = "https://chasmish-hero.herokuapp.com/users";
     axios.post(url, user).then().catch();
   };
+
   const updateUser = (email, displayName) => {
     const user = { email, displayName };
-    const url = "http://localhost:5000/users";
+    const url = "https://chasmish-hero.herokuapp.com/";
     axios.put(url, user).then().catch();
   };
 
+  useEffect(() => {
+    const url = `https://chasmish-hero.herokuapp.com/admin/${user.email}`;
+    axios.get(url).then((user) => {
+      const admin = user.data;
+      setAdmin(admin.admin);
+      setIsLoading(false);
+    });
+  }, [user.email]);
   return {
     user,
+    admin,
     setUser,
     error,
-    saveUser,updateUser,
+    saveUser,
+    updateUser,
     setError,
     isLoading,
     setIsLoading,
