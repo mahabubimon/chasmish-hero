@@ -19,9 +19,9 @@ function App() {
           <Route path="/home">
             <Home></Home>
           </Route>
-          <PrivateRoute path="/glasses">
+          <Route path="/glasses">
             <Glasses></Glasses>
-          </PrivateRoute>
+          </Route>
           <PrivateRoute path="/glass/:id">
             <BuyNow></BuyNow>
           </PrivateRoute>

@@ -3,6 +3,8 @@ import { Button, Row } from "react-bootstrap";
 import { FaGoogle } from "react-icons/fa";
 import { useHistory, useLocation } from "react-router";
 import useAuth from "../../../hooks/useAuth";
+import Footer from "../../shared/footer/Footer";
+import Header from "../../shared/header/Header";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -102,7 +104,9 @@ const Login = () => {
   };
 
   return (
-    <section className="container">
+    <>
+    <Header />
+    <section className="container py-5">
       <Row>
         <div className="col-lg-7">
           <img
@@ -153,6 +157,8 @@ const Login = () => {
         </div>
       </Row>
     </section>
+    <Footer />
+    </>
   );
 };
 
